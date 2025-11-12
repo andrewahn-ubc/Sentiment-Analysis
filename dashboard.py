@@ -25,6 +25,7 @@ if st.sidebar.button("Get Prediction"):
             payload["model"] = model_choice
         
         response = requests.post(f"{API_URL}/predict", json=payload)
+        print(API_URL)
         result = response.json()    
         
         st.sidebar.success(f"**Prediction:** {result['prediction']}")
