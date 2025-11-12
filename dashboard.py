@@ -6,7 +6,7 @@ import time
 from datetime import datetime
 
 # Configuration
-API_URL = "http://0.0.0.0:8000"
+API_URL = "http:/18.119.128.39:8000"
 
 st.set_page_config(page_title="Sentiment Analysis Model Serving Dashboard", layout="wide")
 
