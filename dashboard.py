@@ -6,7 +6,7 @@ import time
 from datetime import datetime
 
 # Configuration
-API_URL = "http://18.119.128.39:8000"
+API_URL = "http://localhost:8000"
 
 st.set_page_config(page_title="Sentiment Analysis Model Serving Dashboard", layout="wide")
 
@@ -25,7 +25,6 @@ if st.sidebar.button("Get Prediction"):
             payload["model"] = model_choice
         
         response = requests.post(f"{API_URL}/predict", json=payload)
-        print(API_URL)
         result = response.json()    
         
         st.sidebar.success(f"**Prediction:** {result['prediction']}")
