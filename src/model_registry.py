@@ -4,13 +4,13 @@ from transformers import pipeline
 class ModelRegistry():
     def __init__(self):
         self.models = {
-            "distilbert": self.model_a_predict,
-            "roberta": self.model_b_predict
+            "DistilBERT": self.model_a_predict,
+            "RoBERTa": self.model_b_predict
         }
         # For A/B testing ratio
         self.weights = {
-            "distilbert": 0.5,
-            "roberta": 0.5
+            "DistilBERT": 0.5,
+            "RoBERTa": 0.5
         }       
         print("Loading distillbert")
         self.model_a = pipeline("sentiment-analysis")
@@ -22,7 +22,7 @@ class ModelRegistry():
         return {
             "prediction": result["label"],
             "confidence": result["score"],
-            "model_version": "distilbert"
+            "model_version": "DistilBERT"
         }
 
     def model_b_predict(self, text: str) -> dict:
@@ -30,7 +30,7 @@ class ModelRegistry():
         return {
             "prediction": result["label"],
             "confidence": result["score"],
-            "model_version": "roberta"
+            "model_version": "RoBERTa"
         }
 
     def select_model(self) -> str:

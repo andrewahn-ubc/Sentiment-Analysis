@@ -23,15 +23,16 @@ async def predict(request: PredictionRequest):
     # Main prediction endpoint with A/B testing
     start_time = time.time()
 
+    print(request)
+
     input_text = request.text
     model_name = request.model
-
-    if (model_name not in registry.models):
-        raise HTTPException(status_code=400, detail="Requested model can't be found.")
 
     try:
         # Select model
         model_name = model_name if model_name else registry.select_model()
+        if (model_name not in registry.models):
+            raise HTTPException(status_code=400, detail="Requested model can't be found.")
 
         # Predict
         result = registry.predict(model_name, input_text)
